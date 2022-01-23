@@ -14,9 +14,14 @@ dataSources:
     mapping:
       file: ./dist/index.js
       handlers:
-      - handler: handleStakingRewarded
-        kind: substrate/EventHandler
-        filter:
-          module: staking
-          method: Rewarded
+        - handler: handleSumRewarded
+          kind: substrate/EventHandler
+          filter:
+            module: staking
+            method: Rewarded
+        - handler: handleStakingRewarded
+          kind: substrate/EventHandler
+          filter:
+            module: staking
+            method: Rewarded
        
