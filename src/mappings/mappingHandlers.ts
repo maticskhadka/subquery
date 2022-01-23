@@ -7,14 +7,23 @@ function createSumReward(accountId: string):SumReward{
     entity.totalReward = BigInt(0);
     return entity;
 }
-export async function handleStakingRewarded(event: any): Promise<void> {
+
+export async function handleStakingReward(event: SubstrateEvent): Promise<void> {
+    await handleStakingRewarded(event)
+}
+
+export async function handleStakingRewarded(event: SubstrateEvent): Promise<void> {
 const {event:{data:[account,newReward]}}=event;
 const entity = new StakingReward(`${event.block.block.header.number}-${event.idx.toString()}`);
-entity.account=account.toString();
+entity.accountId=account.toString();
 entity.balance=(newReward as Balance).toBigInt();
 entity.date=event.block.timestamp;
 entity.blockHeight= event.block.block.header.number.toNumber();
 await entity.save();
+}
+
+export async function handleSumReward(event: SubstrateEvent): Promise<void> {
+    await handleSumRewarded(event)
 }
 
 export async function handleSumRewarded(event: any): Promise<void> {
