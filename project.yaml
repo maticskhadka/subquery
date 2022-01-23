@@ -1,5 +1,5 @@
 specVersion: 0.2.0
-name: staking-rewards
+name: subquery
 version: 0.0.4
 description: This project can be use as a starting po...
 repository: https://github.com/maticskhadka/subquery.git
